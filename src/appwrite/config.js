@@ -15,6 +15,7 @@ export class Service {
         this.bucket = new Storage(this.client)
     }
 
+    // TODO:
     async getPost(slug){
         // follow the steps in the documentation of getDocument/Databases/appwrite
         try {
@@ -25,7 +26,10 @@ export class Service {
         }
     }
 
+
+    // TODO:
     async getPosts(queries = [Query.equal("status", "active")] ){
+        //? From the documentation Queries/Databases/appwrite.io/docs
         try {
             return await this.databases.listDocuments(conf.appwriteDatabaseId, conf.appwriteCollectionId, queries)
         } catch (error) {
@@ -34,6 +38,7 @@ export class Service {
         }
     }
 
+    // TODO:
     async createPost({title, slug, content, featuredImage, status, userId}){
         try {
             return await this.databases.createDocument(
@@ -50,6 +55,7 @@ export class Service {
         }
     }
 
+    // TODO:
     async updatePost(slug, {title, content, featuredImage, status}){
         try {
             return await this.databases.updateDocument(
@@ -66,6 +72,7 @@ export class Service {
         }
     }
 
+    // TODO:
     async deletePost(slug){
         try {
             await this.databases.deleteDocument(
@@ -82,6 +89,7 @@ export class Service {
 
     // storage service
 
+    // TODO:
     async uploadFile(file){
         try {
             return await this.bucket.createFile(
@@ -95,6 +103,7 @@ export class Service {
         }
     }
 
+    // TODO:
     async deleteFile(fileId){
         try {
             return await this.bucket.deleteFile(
@@ -108,6 +117,8 @@ export class Service {
         }
     }
 
+    //? shows the cutted and resized image
+    // TODO:
     getFilePreview(fileId){
         return this.bucket.getFilePreview(
             conf.appwriteBucketId,
@@ -119,3 +130,4 @@ export class Service {
 
 const service = new Service()
 export default service;
+// here also the object is exported
