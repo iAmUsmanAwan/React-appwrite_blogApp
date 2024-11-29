@@ -9,8 +9,8 @@ import authService from './appwrite/auth'
 import Logo from "./components/Logo"
 
 function App() {
-  const [loading, setLoading] = useState(true);
-  const dispatch = useDispatch();
+    const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         authService
@@ -23,18 +23,18 @@ function App() {
     }, [dispatch]);
 
     return !loading ? (
-      <div className="min-h-screen flex flex-wrap content-between bg-gray-400">
-          <div className="w-full block">
-              <Header />
-              <main>
-                  <Outlet />
-              </main>
-          </div>
-          <div className="w-full block">
-              <Footer />
-          </div>
-      </div>
-  ) : null;
+        <div className="min-h-screen flex flex-wrap content-between bg-gray-400">
+            <div className="w-full block">
+                <Header />
+                <main>
+                    <Outlet />
+                </main>
+            </div>
+            <div className="w-full block">
+                <Footer />
+            </div>
+        </div>
+    ) : null;
 }
 
 export default App

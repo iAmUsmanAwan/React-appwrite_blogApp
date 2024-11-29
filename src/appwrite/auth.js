@@ -19,6 +19,7 @@ export class AuthService {
         this.account = new Account(this.client)
     }
 
+    // TODO:
     async createAccount({email, password, name}){
         
         //* create a new user in appwrite, return the user object or error if something goes wrong, but as these things might take sometime hence we have created this method async
@@ -36,6 +37,8 @@ export class AuthService {
             throw error
         }
     }
+
+    // TODO:
     async login({email, password}){
 
         //* log in the user in appwrite, return the session object or error if something goes wrongs
@@ -46,6 +49,8 @@ export class AuthService {
             throw error
         }
     }
+
+    // TODO:
     async getCurrentUser(){
 
         //* get the current user from appwrite, return the user object or null if something goes wrong
@@ -57,6 +62,8 @@ export class AuthService {
         }
         return null
     }
+
+    // TODO:
     async logout(){
 
         //* log out the user in appwrite, return true or error if something goes wrong

@@ -20,7 +20,7 @@ function Header() {
         {
             name: "Login",
             slug: "/login",
-            active: !authStatus
+            active: !authStatus   //? if we are already login then it will be false
         },
         {
             name: "Signup",
@@ -40,7 +40,7 @@ function Header() {
     ]
 
     return (
-    <header className='py-3 shadow bg-gray-500'>
+    <header className='py-3 shadow bg-slate-500'>
         <Container>
             <nav className='flex'>
                 <div className='mr-4'>
