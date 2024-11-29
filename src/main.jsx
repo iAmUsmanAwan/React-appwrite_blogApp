@@ -6,7 +6,6 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import { Provider } from 'react-redux'
 import store from "./store/store.js"
 
-
 import Home from "./pages/Home.jsx"
 import Login from "./pages/Login.jsx"
 import Protected from "./components/AuthLayout.jsx"
@@ -20,7 +19,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [
+    children: [    //? all the subpaths go into children
       {
         path: "/",
         element: <Home />
@@ -43,7 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/all-posts",
-        element: (
+        element: (      //? here when authenthication is true then load AllPosts page
           <Protected authentication>
             <AllPosts />
           </Protected>

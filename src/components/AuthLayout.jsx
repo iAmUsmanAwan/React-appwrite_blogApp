@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
+//? this will serve as a wrapper and checks for the authentication
 function Protected({children, authentication = true}) {
 
     const authStatus = useSelector((state) => state.auth.status )

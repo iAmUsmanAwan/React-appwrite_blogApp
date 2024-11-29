@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+//* All the reducers are declared here
 
+// Define your initial state here.
 const initialState = {
     status: false,
     userData: null
@@ -24,3 +26,4 @@ const authSlice = createSlice({
 export const { login, logout } = authSlice.actions
 
 export default authSlice.reducer
+//? here we have called reducer while above in the code we have initialized reducers because this is the syntax mentioned in the documentation

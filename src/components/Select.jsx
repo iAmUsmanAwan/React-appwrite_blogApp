@@ -16,7 +16,7 @@ function Select({
                     </label>
             )}
             <select
-            {...props}
+            {...props}   // display all the props we have
             id={id}
             ref={ref}
             className={`px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full ${className}`}
@@ -24,7 +24,7 @@ function Select({
                 {
                     options.map((option) => (
                         <option
-                        key={option} 
+                        key={option}   // for react fiber to know it is not looping in same values (for performance optimization)
                         value={option}
                         >{option}</option>
                     ))

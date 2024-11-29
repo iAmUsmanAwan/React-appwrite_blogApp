@@ -1,6 +1,7 @@
 import React, {useId} from 'react'
 
-const Input = React.forwardRef( function Input({
+const Input = React.forwardRef( function Input({      //? hook forwardRef allows us to pass everything to parent component. Passing to child is props.
+    //* here we have used React.forwardRef during the decleration of the function but we can also used this while exporting the function like we have done in Select.jsx
     label, 
     type = 'text',
     className= "",
