@@ -54,14 +54,15 @@ export default function PostForm({post}){
 
     const slugTransform = useCallback((value) => {
         if(value && typeof value === "string") return value.trim().toLowerCase().replace(/[^a-zA-Z\d\s]+/g, '-')
-        .replace(/\s/g, "-")
+        .replace(/\s/g, "-")    //* regular expression
     }, [])
 
     React.useEffect(() => {
         watch((value, {name}) => {
-            if (name === "title") {
+            if (name === "title") 
+                {
                 setValue("slug", slugTransform(value.title), {shouldValidate: true})
-            }
+                }
         }) 
     }, [watch, slugTransform, setValue])
     return (

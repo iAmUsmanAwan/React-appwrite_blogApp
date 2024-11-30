@@ -2,6 +2,8 @@ import React from 'react'
 import {Controller} from "react-hook-form"
 import {Editor} from "@tinymce/tinymce-react"
 
+//* Real Time Editor
+//? here TinyMCE is used
 
 function RTE({
     name, control, label, defaultValue = ""
@@ -12,7 +14,7 @@ function RTE({
             label && <label className='inline-block mb-1 pl-1'> {label}</label>
         }
         <Controller
-        name={name || "content"}
+        name={name || "content"}    //? default set to content
         control={control}
         render={({field: {onChange}}) => (
             <Editor
