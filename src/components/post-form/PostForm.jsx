@@ -8,17 +8,18 @@ import appwriteSerice from "../../appwrite/config"
 import {useSelector } from "react-redux"
 import {useNavigate} from "react-router-dom"
 
+//* this is the most important form because it uses almost everything that we have built so far
 
-export default function PostForm({post}){
-    const {register, handleSubmit, watch, setValue, control, getValues} = useForm({
-        defaultValues: {
-            tittle: post?.title || "",
-            slug: post?.slug || "",
-            content: post?.content || "",
-            status: post?.status || "active"
-
-        }
-    })
+export default function PostForm({post})
+    {
+        const {register, handleSubmit, watch, setValue, control, getValues} = useForm({      //? this will duplicate the post
+            defaultValues: {
+                tittle: post?.title || "",
+                slug: post?.slug || "",
+                content: post?.content || "",
+                status: post?.status || "active"
+            }
+        })
 
     const navigate = useNavigate()
     const userData = useSelector((state) => state.auth.userData)
@@ -27,7 +28,7 @@ export default function PostForm({post}){
         if (post) {
             const file = data.image[0] ? await appwriteSerice.uploadFile(data.image[0]) : null
 
-            if (file) {
+            if (file) {     //? if we already have the post
                 appwriteSerice.deleteFile(post.featuredImage)
             }
             const dbPost = await appwriteSerice.updatePost(post.$id, {
@@ -37,7 +38,7 @@ export default function PostForm({post}){
             if (dbPost) {
                 navigate(`/post/${dbPost.$id}`)
             }
-        } else {
+        } else {      //? if we are uploading a fresh post
             const file = await appwriteSerice.uploadFile(data.image[0])
             if (file) {
                 const fileId = file.$id
@@ -52,12 +53,12 @@ export default function PostForm({post}){
 
     }
 
-    const slugTransform = useCallback((value) => {
+    const slugTransform = useCallback((value) => {     //? to create slug from the title
         if(value && typeof value === "string") return value.trim().toLowerCase().replace(/[^a-zA-Z\d\s]+/g, '-')
         .replace(/\s/g, "-")    //* regular expression
     }, [])
 
-    React.useEffect(() => {
+    React.useEffect(() => {    //? here watch is used which can read and also output that value from one section to another section
         watch((value, {name}) => {
             if (name === "title") 
                 {
@@ -74,14 +75,14 @@ export default function PostForm({post}){
                 label="Title"
                 placeholder="Title"
                 className="mb-4"
-                {...register("title", {required: true})}
+                {...register("title", {required: true})}     //? we have to register input inside the hooks so that they are available as values  (...register)
                 />
                 <Input
                 label="Slug :"
                 placeholder="Slug"
                 className="mb-4"
                 {...register("slug", {required: true})}
-                onInput={(e) => {
+                onInput={(e) => {   //? this input field is setting some values
                     setValue("slug", slugTransform(e.currentTarget.value), {shouldValidate: true})
                 }}
                 />
@@ -92,12 +93,13 @@ export default function PostForm({post}){
                 defaultValue={getValues("content")}
                 />
             </div>
+
             <div className="1/3 px-2">
                 <Input
                 label="Featured Image"
                 type="file"
                 className="mb-4"
-                accept="image/png, image/jpg, image/jpeg"
+                accept="image/png, image/jpg, image/jpeg"     //? what type of data to accept 
                 {...register("image", {required: !post})}
                 />
                 {post && (
@@ -105,8 +107,8 @@ export default function PostForm({post}){
                         <img src={appwriteSerice.getFilePreview(post.featuredImage)} alt={post.title}
                         className="rounded-lg"
                         />
-                        
                     </div>
+
                 )}
                 <Select
                 options={["active", "inactive"]}
@@ -118,8 +120,22 @@ export default function PostForm({post}){
                 type="submit"
                 bgColor={post ? "bg-green-500": undefined}
                 className="w-full"
-                >{post ? "Update": "Submit"}</Button>
+                >{post ? "Update": "Submit"}   //? if the post is there then we will update it otherwise we will submit it 
+                </Button>
             </div>
         </form>
     )
 }
+
+
+//? how we have done 
+
+//  upload the files first 
+//  create helpers for them 
+//  upload the file 
+//  get back the url of the file 
+//  set your object properly
+//  use helper files to upload the file 
+//  create the files
+//  create the post
+

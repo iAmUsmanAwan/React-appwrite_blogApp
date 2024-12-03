@@ -20,7 +20,7 @@ function Login() {
             const session = await authService.login(data)
             if (session) {
                 const userData = await authService.getCurrentUser()
-                if (userData) dispatch(authLogin({userData}))
+                if (userData) dispatch(authLogin({userData}))    //? here we used authLogin because we named login as authLogin while importing authSlice from store
                 navigate("/")
             }
         } catch (error) {
