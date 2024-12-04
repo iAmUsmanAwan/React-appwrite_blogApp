@@ -120,8 +120,8 @@ export default function PostForm({post})
                 type="submit"
                 bgColor={post ? "bg-green-500": undefined}
                 className="w-full"
-                >{post ? "Update": "Submit"}   //? if the post is there then we will update it otherwise we will submit it 
-                </Button>
+                >{post ? "Update": "Submit"}     {/* if the post is there then we will update it otherwise we will submit it */}
+                </Button>     
             </div>
         </form>
     )

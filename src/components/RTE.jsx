@@ -2,12 +2,16 @@ import React from 'react'
 import {Controller} from "react-hook-form"
 import {Editor} from "@tinymce/tinymce-react"
 
-//* Real Time Editor
+//* Real Time Editor  (TinyMCE)
 //? for this purpose TinyMCE is used
 
 function RTE({
     name, control, label, defaultValue = ""
 }) {
+
+    //* Access the API key from environment variables
+    const apiKey = import.meta.env.VITE_TINYMCE_API_KEY;  // Get API key from .env
+
     return (
     <div className='w-full'>
         {
@@ -16,40 +20,40 @@ function RTE({
         <Controller
         name={name || "content"}    //? default set to content
         control={control}
-        render={({field: {onChange}}) => (
+        defaultValue={defaultValue}  // Ensure default value is passed
+        render={({field: {onChange, value}}) => (
             <Editor
-            initialValue={defaultValue}
+            value={value || defaultValue}     // Initialize with the current value or default
             init={{
                 branding: false,
                 height: 500,
                 menubar: true,
-                plugins: [      //? same from the documentation of tinymce
-                    "image",
-                    "advlist",
-                    "autolink",
-                    "lists",
-                    "link",
-                    "image",
-                    "charmap",
+                apiKey: apiKey,
+                plugins: [      //? same from the documentation of tinymce as needed
+                    "image", 
+                    "advlist", 
+                    "autolink", 
+                    "lists", 
+                    "link", 
+                    "charmap", 
                     "preview",
-                    "anchor",
-                    "searchreplace",
-                    "visualblocks",
-                    "code",
+                    "anchor", 
+                    "searchreplace", 
+                    "visualblocks", 
+                    "code", 
                     "fullscreen",
-                    "insertdatetime",
-                    "media",
-                    "table",
-                    "code",
-                    "help",
-                    "wordcount",
-                    "anchor",
+                    "insertdatetime", 
+                    "media", 
+                    "table", 
+                    "help", 
+                    "wordcount"
                 ],
                 toolbar:
-                "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
-                content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                    "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
+                content_style: 
+                    "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
             }}
-            onEditorChange={onChange}
+            onEditorChange={(newValue) => onChange(newValue)}  // Update the form value when editor changes
             />
         )}
         />
