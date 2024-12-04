@@ -15,8 +15,9 @@ export class AuthService {
 
         this.client
         .setEndpoint(conf.appwriteUrl)   //? our API end point
-        .setProject(conf.appwriteProjectId)
+        .setProject(conf.appwriteProjectId);    // Project ID
         this.account = new Account(this.client)
+        console.log("Account Initialized:", this.account); // Debug log
     }
 
     // TODO:
@@ -26,14 +27,22 @@ export class AuthService {
 
         //? note: this method does not handle the case where the email is already taken, we would need to add a check for that in the code
 
+        console.log("Creating account with:", { email, password, name });
         try {
-            const userAccount = await this.account.create(ID.unique(), email, password, name)     //? here we have used await because it is used instead of promise
+            const userAccount = await this.account.create(
+                ID.unique(), 
+                email, 
+                password,
+                name
+            );     //? here we have used await because it is used instead of promise
+            console.log("User account created:", userAccount);
             if (userAccount) {
                 return this.login({email, password})  //? here we have called other method of the class 
             } else {
                 return userAccount
             }
         } catch (error) {
+            console.error("Error creating account:", error);
             throw error
         }
     }
@@ -44,8 +53,9 @@ export class AuthService {
         //* log in the user in appwrite, return the session object or error if something goes wrongs
 
         try {
-            return await this.account.createEmailSession(email, password)
+            return await this.account.createEmailPasswordSession(email, password);
         } catch (error) {
+            console.error("Error during login:", error);
             throw error
         }
     }
