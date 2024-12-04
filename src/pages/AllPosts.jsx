@@ -14,12 +14,16 @@ function AllPosts() {
         if (posts) {
             setPosts(posts.documents)
         }
-        })
-    }, [])
+        });
+    }, []);
     
-    // TODO: add case for array length 0
-    
-    return (
+    // // TODO: add case for array length 0
+
+    let content; 
+    if (posts.length === 0) {
+        content = <p>No posts available. Please check back later!</p>;
+    } else {
+    content = (
         <div className='w-full py-8'>
         <Container>
             <div className="flex flex-wrap">
@@ -30,6 +34,12 @@ function AllPosts() {
             ))}
             </div>
         </Container>
+        </div>
+    )}
+
+    return (
+        <div>
+            {content}
         </div>
     )
 }

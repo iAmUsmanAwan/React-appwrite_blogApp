@@ -3,7 +3,7 @@ import {Controller} from "react-hook-form"
 import {Editor} from "@tinymce/tinymce-react"
 
 //* Real Time Editor
-//? here TinyMCE is used
+//? for this purpose TinyMCE is used
 
 function RTE({
     name, control, label, defaultValue = ""
@@ -23,7 +23,7 @@ function RTE({
                 branding: false,
                 height: 500,
                 menubar: true,
-                plugins: [
+                plugins: [      //? same from the documentation of tinymce
                     "image",
                     "advlist",
                     "autolink",
