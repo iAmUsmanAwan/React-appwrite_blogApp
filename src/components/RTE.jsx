@@ -2,6 +2,8 @@ import React from 'react'
 import {Controller} from "react-hook-form"
 import {Editor} from "@tinymce/tinymce-react"
 
+//* Real Time Editor  (TinyMCE)
+//? for this purpose TinyMCE is used
 
 //* Real Time Editor  (TinyMCE)
 
@@ -30,7 +32,6 @@ function RTE({
                 branding: false,
                 height: 500,
                 menubar: true,
-
                 apiKey: apiKey,
                 plugins: [      //? same from the documentation of tinymce
                     "image",
