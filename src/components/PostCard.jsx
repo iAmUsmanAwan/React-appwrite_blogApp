@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import appwriteService from "../appwrite/config.js"
 
 //* to take the user to the post when he clicks on a post
@@ -15,9 +15,9 @@ function PostCard({
             className='w-full justify-center mb-4'
             >
                 <img src={appwriteService.getFilePreview(featuredImage)}
-                //* this featured image is coming from config.js from the appwrite folder in src. appwriteservice is the instance of a service that intract with appwrite. getfilepreview() is a method provided by this service to retrieve a preview URL for a file stored in Appwrite's storage. featuredImage is a prop passed to the PostCard component
                 alt={title}
                 className='rounded-xl'
+                //* this featured image is coming from config.js from the appwrite folder in src. appwriteservice is the instance of a service that intract with appwrite. getfilepreview() is a method provided by this service to retrieve a preview URL for a file stored in Appwrite's storage. featuredImage is a prop passed to the PostCard component
                 />
             </div>
             <h2 className='text-xl font-bold'>{title}</h2>
