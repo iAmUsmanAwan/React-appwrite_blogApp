@@ -1,1 +1,1 @@
-# ⚜️ Preview React Projects ⚜️
+# ⚜️ Preview Blog App ⚜️
