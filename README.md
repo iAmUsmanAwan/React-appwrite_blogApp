@@ -50,5 +50,6 @@ Contributions are welcome! Feel free to fork the repo, create a branch, and subm
 
 ## 📌 Show Your Support
 If you find this project helpful, please consider giving it a star! ⭐
+
 You can also follow me on GitHub for more awesome projects.
 
